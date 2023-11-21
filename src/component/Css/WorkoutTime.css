@@ -1,0 +1,15 @@
+.custom-button {
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+  
+.custom-button:hover {
+    transform: scale(1.05);
+}
+.custom-button {
+  font-weight: 600;
+} 
+  

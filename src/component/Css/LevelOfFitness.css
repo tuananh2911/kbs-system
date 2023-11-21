@@ -1,0 +1,19 @@
+.fitness-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    font-size: 1.2rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #3498db;
+    color: #fff;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .fitness-button:hover {
+    transform: scale(1.1);
+  }
+  

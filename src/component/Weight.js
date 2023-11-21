@@ -1,29 +1,29 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-function TargetWeight() {
+function Weight() {
   const navigate = useNavigate();
-  const [TargetWeight, setTargetWeight] = useState(null);
+  const [weight, setWeight] = useState('');
 
-  const handleTargetWeightChange = (event) => {
-    setTargetWeight(event.target.value);
+  const handleWeightChange = (event) => {
+    setWeight(event.target.value);
   };
-  const handleOKClick = () => {
-    // Thực hiện các xử lý cần thiết 
 
-    navigate('/LevelFitnessSelection');
+  const handleOKClick = () => {
+    // Thực hiện các xử lý cần thiết với chiều cao (ví dụ: kiểm tra hợp lệ)
+    navigate('/TargetWeight');
   };
 
   return (
     <div className="flex flex-col items-center justify-center h-screen">
       <div className="mt-4">
-        <label htmlFor="weight" className="text-lg font-medium">Nhập mục tiêu cân nặng của bạn:</label>
+        <label htmlFor="weight" className="text-lg font-medium">Nhập cân nặng của bạn:</label>
         <input
           type="number"
-          id="TargetWeight"
+          id="weight"
           className="border border-gray-500 px-2 py-1 ml-2"
-          value={TargetWeight}
-          onChange={handleTargetWeightChange}
+          value={weight}
+          onChange={handleWeightChange}
           autoComplete='off'
           placeholder='Đơn vị kg'
         />
@@ -38,4 +38,4 @@ function TargetWeight() {
   );
 }
 
-export default TargetWeight;
+export default Weight;

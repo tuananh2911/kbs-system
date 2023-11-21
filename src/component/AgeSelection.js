@@ -1,33 +1,48 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+
 function AgeSelection() {
   const navigate = useNavigate();
-  const [selectedAge, setSelectedAge] = useState(null);
+  const [enteredAge, setEnteredAge] = useState(''); // Thay đổi tên state và hàm cập nhật
+  const [error, setError] = useState('');
 
-  const handleAgeSelect = (age) => {
-    setSelectedAge(age);
-    navigate('/goal-selection'); // Chuyển hướng sau khi cập nhật trạng thái
+  const handleAgeChange = (event) => {
+    setEnteredAge(event.target.value);
   };
 
-  const ages = ["18-25", "26-30", "31-35", "36-40"];
+  const handleContinueClick = () => {
+    // Kiểm tra xem độ tuổi nhập vào có hợp lệ hay không
+    const isValidAge = /^[1-9][0-9]*$/.test(enteredAge) && enteredAge >= 12 && enteredAge <= 100;
+    if (isValidAge) {
+      // Thực hiện các xử lý cần thiết với độ tuổi (ví dụ: chuyển hướng)
+      navigate('/Height');
+    } else {
+      setError('Độ tuổi không hợp lệ. Vui lòng nhập lại.');
+    }
+  };
 
   return (
     <div className="flex flex-col items-center justify-center h-screen">
-      <h2 className="text-2xl font-bold mb-4">Chọn Độ Tuổi Của Bạn</h2>
-      <div className="grid grid-cols-2 gap-4">
-        {ages.map((age) => (
-          <button
-            key={age}
-            className={`px-4 py-2 rounded-md text-white font-medium ${selectedAge === age ? 'bg-blue-600' : 'bg-blue-500'}`}
-            onClick={() => handleAgeSelect(age)} // Sử dụng handleAgeSelect ở đây
-          >
-            {age}
-          </button>
-        ))}
+      <h2 className="text-2xl font-bold mb-4">Nhập Độ Tuổi Của Bạn</h2>
+      <div className="mb-4">
+        <label htmlFor="age" className="text-lg font-medium">Độ Tuổi:</label>
+        <input
+          type="number"
+          id="age"
+          className="border border-gray-500 px-2 py-1 ml-2"
+          value={enteredAge}
+          onChange={handleAgeChange}
+        />
       </div>
+      {error && <p className="text-red-500">{error}</p>}
+      <button
+        className="bg-blue-500 text-white px-4 py-2 rounded-md"
+        onClick={handleContinueClick}
+      >
+        Tiếp Tục
+      </button>
     </div>
   );
 }
-
 
 export default AgeSelection;

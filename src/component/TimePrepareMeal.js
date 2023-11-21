@@ -1,33 +1,58 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-function TimePrepareMealSelection() {
+
+const TimePrepareMeal = () => {
   const navigate = useNavigate();
-  const [selectedTimesPrepare, setSelectedTimesPrepare] = useState(null);
+  const [morningTime, setMorningTime] = useState('');
+  const [noonTime, setNoonTime] = useState('');
+  const [eveningTime, setEveningTime] = useState('');
 
-  const handleTimesPrepareSelect = (age) => {
-    setSelectedTimesPrepare(age);
-    navigate('/time-prepare-meal'); // Chuyển hướng sau khi cập nhật trạng thái
+  const handleOKClick = () => {
+    // Thực hiện các xử lý cần thiết với thời gian nấu ăn
+    navigate('/no'); 
   };
-
-  const timesPrepare = ["18-25", "26-30", "31-35", "36-40"];
 
   return (
     <div className="flex flex-col items-center justify-center h-screen">
-      <h2 className="text-2xl font-bold mb-4">Chọn Độ Tuổi Của Bạn</h2>
-      <div className="grid grid-cols-2 gap-4">
-        {timesPrepare.map((timePrepare) => (
-          <button
-            key={timePrepare}
-            className={`px-4 py-2 rounded-md text-white font-medium ${selectedTimesPrepare === timePrepare ? 'bg-blue-600' : 'bg-blue-500'}`}
-            onClick={() => handleTimesPrepareSelect(timePrepare)} // Sử dụng handleAgeSelect ở đây
-          >
-            {timePrepare}
-          </button>
-        ))}
+      <h2 className="text-2xl font-bold mb-4">Bạn giành bao nhiêu thời gian để nấu ăn?</h2>
+      <div className="mb-4">
+        <label htmlFor="morningTime" className="text-lg font-medium" >Buổi Sáng:</label>
+        <input q
+          type="text"
+          id="morningTime"
+          className="border border-gray-500 px-2 py-1 ml-2"
+          value={morningTime}
+          onChange={(e) => setMorningTime(e.target.value)}
+        />
       </div>
+      <div className="mb-4">
+        <label htmlFor="noonTime" className="text-lg font-medium">Buổi Trưa:</label>
+        <input
+          type="text"
+          id="noonTime"
+          className="border border-gray-500 px-2 py-1 ml-2"
+          value={noonTime}
+          onChange={(e) => setNoonTime(e.target.value)}
+        />
+      </div>
+      <div className="mb-4">
+        <label htmlFor="eveningTime" className="text-lg font-medium">Buổi Tối:</label>
+        <input
+          type="text"
+          id="eveningTime"
+          className="border border-gray-500 px-2 py-1 ml-2"
+          value={eveningTime}
+          onChange={(e) => setEveningTime(e.target.value)}
+        />
+      </div>
+      <button
+        className="bg-blue-500 text-white px-4 py-2 rounded-md"
+        onClick={handleOKClick}
+      >
+        OK
+      </button>
     </div>
   );
-}
+};
 
-
-export default TimePrepareMealSelection;
+export default TimePrepareMeal;
