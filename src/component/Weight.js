@@ -6,6 +6,8 @@ function Weight() {
   const [weight, setWeight] = useState('');
 
   const handleWeightChange = (event) => {
+
+      localStorage.setItem('weight', event.target.value);
     setWeight(event.target.value);
   };
 

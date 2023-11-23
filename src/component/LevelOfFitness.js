@@ -8,6 +8,7 @@ function LevelFitnessSelection() {
 
   const handleLevelFitnessSelect = (levelFitness) => {
     setSelectedLevelFitness(levelFitness);
+    localStorage.setItem('levelFitness', levelFitness);
     navigate('/PhysicalCondition');
   };
 
@@ -15,7 +16,7 @@ function LevelFitnessSelection() {
 
   return (
     <div className="flex flex-col items-center justify-center h-screen">
-      <h2 className="text-2xl font-bold mb-4">Mức độ tập thể hình của bạn là gì?</h2>
+      <h2 className="text-2xl font-bold mb-4">Mức độ tập thể hình của bạn là gì(số ngày trong tuần)?</h2>
       <div className="grid grid-cols-5 gap-4">
         {levelsFitness.map((levelFitness) => (
           <button

@@ -14,8 +14,8 @@ function AgeSelection() {
     // Kiểm tra xem độ tuổi nhập vào có hợp lệ hay không
     const isValidAge = /^[1-9][0-9]*$/.test(enteredAge) && enteredAge >= 12 && enteredAge <= 100;
     if (isValidAge) {
-      // Thực hiện các xử lý cần thiết với độ tuổi (ví dụ: chuyển hướng)
-      navigate('/Height');
+      localStorage.setItem('age', enteredAge);
+      navigate('/Gender');
     } else {
       setError('Độ tuổi không hợp lệ. Vui lòng nhập lại.');
     }

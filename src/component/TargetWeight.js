@@ -6,6 +6,7 @@ function TargetWeight() {
   const [TargetWeight, setTargetWeight] = useState(null);
 
   const handleTargetWeightChange = (event) => {
+    localStorage.setItem('targetWeight', event.target.value);
     setTargetWeight(event.target.value);
   };
   const handleOKClick = () => {

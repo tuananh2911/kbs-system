@@ -6,11 +6,12 @@ function Height() {
   const [height, setHeight] = useState(''); // Thêm state cho chiều cao
 
   const handleHeightChange = (event) => {
+    localStorage.setItem('height', event.target.value);
     setHeight(event.target.value);
   };
 
   const handleOKClick = () => {
-    // Thực hiện các xử lý cần thiết với chiều cao (ví dụ: kiểm tra hợp lệ)
+    
     navigate('/Weight');
   };
 

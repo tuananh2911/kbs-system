@@ -3,47 +3,38 @@ import { useNavigate } from 'react-router-dom';
 
 const PhysicalCondition = () => {
   const navigate = useNavigate();
-  const [selectedLevel, setSelectedLevel] = useState(null);
+  const [pushUpCount, setPushUpCount] = useState('');
 
-  const levels = [
-    { label: 'Thấp', pushUp: '< 10', pullUp: '< 5' },
-    { label: 'Trung Bình', pushUp: '10 - 20', pullUp: '5 - 10' },
-    { label: 'Cao', pushUp: '20 - 30', pullUp: '10 - 15' },
-    { label: 'Rất Cao', pushUp: '> 30', pullUp: '> 15' },
-  ];
-
-  const handleLevelSelect = (level) => {
-    setSelectedLevel(level);
-    navigate('/WorkoutTime', { state: { level } });
+  const handleSubmit = () => {
+    if (pushUpCount < 1 || pushUpCount > 40) {
+      alert('Vui lòng nhập số lượng hít đất từ 1 đến 40.');
+      return;
+    }
+    localStorage.setItem('pushUp', pushUpCount);
+    navigate('/WorkoutTime', { state: { pushUpCount } });
   };
 
   return (
     <div className="flex flex-col items-center justify-center h-screen">
-      <h2 className="text-2xl font-bold mb-4">Chọn Mức Độ Thể Chất Của Bạn</h2>
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-        {levels.map((level) => (
-          <div
-            key={level.label}
-            className={`p-4 transition-transform transform hover:scale-105 cursor-pointer rounded-md ${
-              selectedLevel === level ? 'bg-blue-600' : 'bg-blue-500'
-            }`}
-            onClick={() => handleLevelSelect(level)}
-          >
-            <p className="text-white font-medium">{level.label}</p>
-            <div className="mt-2 text-gray-300">
-              <p>Push-up: {level.pushUp}</p>
-              <p>Pull-up: {level.pullUp}</p>
-            </div>
-          </div>
-        ))}
+      <h2 className="text-2xl font-bold mb-4">Nhập Số Lượng Hít Đất Của Bạn</h2>
+      <div className="mb-4">
+        <input
+          type="number"
+          id="pushUpCount"
+          value={pushUpCount}
+          onChange={(e) => setPushUpCount(e.target.value)}
+          className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+          placeholder="Nhập số từ 1 đến 40"
+          min="1"
+          max="40"
+        />
       </div>
-      {selectedLevel && (
-        <div className="mt-4">
-          <h3 className="text-lg font-bold mb-2">Chi Tiết Mức Độ Thể Chất</h3>
-          <p>Push-up: {selectedLevel.pushUp}</p>
-          <p>Pull-up: {selectedLevel.pullUp}</p>
-        </div>
-      )}
+      <button
+        onClick={handleSubmit}
+        className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
+      >
+        Xác Nhận
+      </button>
     </div>
   );
 };
