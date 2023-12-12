@@ -1,40 +1,111 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const PhysicalCondition = () => {
   const navigate = useNavigate();
-  const [pushUpCount, setPushUpCount] = useState('');
+  
+  // State cho số lượng mỗi hoạt động
+  const [pushUpCount, setPushUpCount] = useState("");
+  const [swimmingCount, setSwimmingCount] = useState("");
+  const [runningCount, setRunningCount] = useState("");
+  const [pullUpCount, setPullUpCount] = useState("");
+  const [jumpRopeCount, setJumpRopeCount] = useState("");
+
+  // State cho việc chọn môn thể thao
+  const [isPushUpSelected, setIsPushUpSelected] = useState(false);
+  const [isSwimmingSelected, setIsSwimmingSelected] = useState(false);
+  const [isRunningSelected, setIsRunningSelected] = useState(false);
+  const [isPullUpSelected, setIsPullUpSelected] = useState(false);
+  const [isJumpRopeSelected, setIsJumpRopeSelected] = useState(false);
 
   const handleSubmit = () => {
-    if (pushUpCount < 1 || pushUpCount > 40) {
-      alert('Vui lòng nhập số lượng hít đất từ 1 đến 40.');
-      return;
-    }
-    localStorage.setItem('pushUp', pushUpCount);
-    navigate('/WorkoutTime', { state: { pushUpCount } });
+    // Xử lý gửi dữ liệu
+    const finalPushUpCount = isPushUpSelected ? pushUpCount : 0;
+    const finalSwimmingCount = isSwimmingSelected ? swimmingCount : 0;
+    const finalRunningCount = isRunningSelected ? runningCount : 0;
+    const finalPullUpCount = isPullUpSelected ? pullUpCount : 0;
+    const finalJumpRopeCount = isJumpRopeSelected ? jumpRopeCount : 0;
+
+    sessionStorage.setItem("numberPushUp", finalPushUpCount);
+    sessionStorage.setItem("numberSwimming", finalSwimmingCount);
+    sessionStorage.setItem("numberRunning", finalRunningCount);
+    sessionStorage.setItem("numberPullUp", finalPullUpCount);
+    sessionStorage.setItem("numberJumpRope", finalJumpRopeCount);
+
+    navigate("/workout-time", { state: { finalPushUpCount, finalSwimmingCount, finalRunningCount, finalPullUpCount, finalJumpRopeCount } });
   };
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen">
-      <h2 className="text-2xl font-bold mb-4">Nhập Số Lượng Hít Đất Của Bạn</h2>
-      <div className="mb-4">
-        <input
-          type="number"
-          id="pushUpCount"
-          value={pushUpCount}
-          onChange={(e) => setPushUpCount(e.target.value)}
-          className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-          placeholder="Nhập số từ 1 đến 40"
-          min="1"
-          max="40"
-        />
-      </div>
-      <button
-        onClick={handleSubmit}
-        className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
-      >
+    <div className="flex flex-col items-center justify-center h-screen  p-4">
+      <h2 className="text-3xl font-bold mb-8 ">Nhập Số Lượng Hoạt Động Thể Chất Của Bạn</h2>
+
+      <ActivityInput
+        label="Hít Đất"
+        selected={isPushUpSelected}
+        setSelected={setIsPushUpSelected}
+        value={pushUpCount}
+        setValue={setPushUpCount}
+        placeholder="Số lần"
+      />
+
+      <ActivityInput
+        label="Bơi Lội"
+        selected={isSwimmingSelected}
+        setSelected={setIsSwimmingSelected}
+        value={swimmingCount}
+        setValue={setSwimmingCount}
+        placeholder="Số vòng"
+      />
+
+      <ActivityInput
+        label="Chạy Bộ"
+        selected={isRunningSelected}
+        setSelected={setIsRunningSelected}
+        value={runningCount}
+        setValue={setRunningCount}
+        placeholder="Khoảng cách (km)"
+      />
+
+      <ActivityInput
+        label="Hít Xà"
+        selected={isPullUpSelected}
+        setSelected={setIsPullUpSelected}
+        value={pullUpCount}
+        setValue={setPullUpCount}
+        placeholder="Số lần"
+      />
+
+      <ActivityInput
+        label="Nhảy Dây"
+        selected={isJumpRopeSelected}
+        setSelected={setIsJumpRopeSelected}
+        value={jumpRopeCount}
+        setValue={setJumpRopeCount}
+        placeholder="Số lần"
+      />
+
+      <button onClick={handleSubmit} className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 mt-4">
         Xác Nhận
       </button>
+    </div>
+  );
+};
+
+const ActivityInput = ({ label, selected, setSelected, value, setValue, placeholder }) => {
+  return (
+    <div className="activity-section mb-4">
+      <label className="flex items-center mb-2">
+        <input type="checkbox" checked={selected} onChange={() => setSelected(!selected)} className="mr-2 rounded-lg" />
+        {label}
+      </label>
+      <input
+        type="number"
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+        className={`input-style w-full px-4 py-2 border rounded-lg ${selected ? 'border-gray-400' : 'border-gray-300 bg-gray-200 text-gray-500 cursor-not-allowed'}`}
+        placeholder={placeholder}
+        disabled={!selected}
+      />
     </div>
   );
 };

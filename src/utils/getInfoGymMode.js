@@ -13,10 +13,10 @@ async function getInfoGymMode(userGymData) {
     }
 
     const data = await response.json();
-    console.log("Response data:", data);
+    return data;
     // Xử lý dữ liệu phản hồi tại đây
   } catch (error) {
     console.error("There was a problem with the fetch operation:", error);
   }
 }
-export default getInfoGymMode
+export {getInfoGymMode}

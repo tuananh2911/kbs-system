@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import './Css/LevelOfFitness.css';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import "./Css/LevelOfFitness.css";
 
 function LevelFitnessSelection() {
   const navigate = useNavigate();
@@ -8,16 +8,18 @@ function LevelFitnessSelection() {
 
   const handleLevelFitnessSelect = (levelFitness) => {
     setSelectedLevelFitness(levelFitness);
-    localStorage.setItem('levelFitness', levelFitness);
-    navigate('/PhysicalCondition');
+    sessionStorage.setItem("frequentlyGym", parseInt(levelFitness));
+    navigate("/physical-condition");
   };
 
-  const levelsFitness = ["1", "2", "3", "4", "5"];
+  const levelsFitness = [0, 1, 2, 3, 4, 5, 6, 7];
 
   return (
     <div className="flex flex-col items-center justify-center h-screen">
-      <h2 className="text-2xl font-bold mb-4">Mức độ tập thể hình của bạn là gì(số ngày trong tuần)?</h2>
-      <div className="grid grid-cols-5 gap-4">
+      <h2 className="text-3xl font-bold mb-8">
+        Mức độ tập thể hình của bạn là gì(số ngày trong tuần)?
+      </h2>
+      <div className="grid grid-cols-4 gap-4">
         {levelsFitness.map((levelFitness) => (
           <button
             key={levelFitness}
