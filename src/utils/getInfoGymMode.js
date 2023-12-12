@@ -1,6 +1,6 @@
 async function getInfoGymMode(userGymData) {
   try {
-    const response = await fetch("http://localhost:5000/app/gym-mode", {
+    const response = await fetch("http://103.77.246.226:5001/app/gym-mode", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
