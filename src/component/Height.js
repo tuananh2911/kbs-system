@@ -19,7 +19,7 @@ function Height() {
       {/* Thêm ô nhập chiều cao và nút OK */}
       <div className="mt-4">
       <h2 className="text-3xl font-bold mb-8">
-          Nhập Chiều Cao của bạn:
+          Nhập chiều cao của bạn:
         </h2>
         <input
           type="number"

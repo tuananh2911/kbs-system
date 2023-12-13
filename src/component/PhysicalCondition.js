@@ -102,7 +102,7 @@ const ActivityInput = ({ label, selected, setSelected, value, setValue, placehol
         type="number"
         value={value}
         onChange={(e) => setValue(e.target.value)}
-        className={`input-style w-full px-4 py-2 border rounded-lg ${selected ? 'border-gray-400' : 'border-gray-300 bg-gray-200 text-gray-500 cursor-not-allowed'}`}
+        className={`input-style bg-slate-900 w-full px-4 py-2 border rounded-lg ${selected ? 'border-gray-400' : 'border-gray-300 bg-gray-200 text-gray-500 cursor-not-allowed'}`}
         placeholder={placeholder}
         disabled={!selected}
       />

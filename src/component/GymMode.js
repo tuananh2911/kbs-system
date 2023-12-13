@@ -38,6 +38,11 @@ function GymMode() {
     "Thứ Bảy",
     "Chủ Nhật",
   ];
+  const workoutPlan = [
+    { day: "Thứ Hai", exercises: ["Bài tập cardio 30 phút", "Tập tạ chân"] },
+    { day: "Thứ Ba", exercises: ["Yoga", "Tập cơ bụng"] },
+    // ... thêm các ngày khác
+  ];
   const location = useLocation();
   const [caloToMaintain, setCaloToMaintain] = useState(0);
   const [caloToReachGoal, setCaloToReachGoal] = useState(0);
@@ -132,6 +137,19 @@ function GymMode() {
           </div>
         ))}
       </div>
+      <div className="bg-slate-800 shadow-md rounded-lg p-6 mb-6">
+      <h2 className="text-xl font-semibold mb-4">Chế Độ Tập Luyện Của Bạn</h2>
+      {workoutPlan.map((dayPlan, index) => (
+        <div key={index} className="mb-4">
+          <h3 className="font-semibold text-lg mb-2">{dayPlan.day}</h3>
+          <ul className="list-disc pl-5">
+            {dayPlan.exercises.map((exercise, exerciseIndex) => (
+              <li key={exerciseIndex}>{exercise}</li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
     </div>
   );
 }
