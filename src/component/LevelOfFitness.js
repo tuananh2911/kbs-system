@@ -6,11 +6,24 @@ function LevelFitnessSelection() {
   const navigate = useNavigate();
   const [selectedLevelFitness, setSelectedLevelFitness] = useState(null);
   const [workoutDuration, setWorkoutDuration] = useState('');
+  const [isDurationDisabled, setIsDurationDisabled] = useState(false);
 
   const handleLevelFitnessSelect = () => {
+    const duration = selectedLevelFitness === 0 ? 0 : workoutDuration;
     sessionStorage.setItem("frequentlyGym", parseInt(selectedLevelFitness));
-    sessionStorage.setItem("workoutDuration", workoutDuration);
+    sessionStorage.setItem("workoutDuration", duration);
     navigate("/physical-condition");
+  };
+
+  const handleFitnessLevelChange = (level) => {
+    setSelectedLevelFitness(level);
+    if (level === 0) {
+      setWorkoutDuration(0);
+      setIsDurationDisabled(true);
+    } else {
+      setWorkoutDuration('');
+      setIsDurationDisabled(false);
+    }
   };
 
   const levelsFitness = [0, 1, 2, 3, 4, 5, 6, 7];
@@ -24,9 +37,12 @@ function LevelFitnessSelection() {
         {levelsFitness.map((levelFitness) => (
           <button
             key={levelFitness}
-            style={{ backgroundColor: selectedLevelFitness === levelFitness ? '#f59e0b' : '#60a5fa' }} // Using inline styles for color change
+            style={{
+              backgroundColor:
+                selectedLevelFitness === levelFitness ? "#f59e0b" : "#60a5fa",
+            }}
             className="fitness-button"
-            onClick={() => setSelectedLevelFitness(levelFitness)}
+            onClick={() => handleFitnessLevelChange(levelFitness)}
           >
             {levelFitness}
           </button>
@@ -43,14 +59,15 @@ function LevelFitnessSelection() {
             placeholder="Nhập thời gian tập luyện (phút)"
             value={workoutDuration}
             onChange={(e) => setWorkoutDuration(e.target.value)}
-            style={{ minWidth: '260px' }}
+            disabled={isDurationDisabled}
+            style={{ minWidth: "260px" }}
           />
         </div>
       </div>
       <button
         className="bg-blue-500 text-white font-bold py-2 px-4 rounded"
         onClick={handleLevelFitnessSelect}
-        disabled={!selectedLevelFitness && !workoutDuration}
+        disabled={selectedLevelFitness === null || workoutDuration === ""}
       >
         Tiếp tục
       </button>

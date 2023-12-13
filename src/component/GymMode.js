@@ -73,6 +73,11 @@ function GymMode() {
       numberPushUp: sessionStorage.getItem("numberPushUp"),
       timeToGym: sessionStorage.getItem("timeToGym"),
       goalSelect: sessionStorage.getItem("goal"),
+      workoutDuration: sessionStorage.getItem("workoutDuration"),
+      numberSwimming:sessionStorage.setItem("numberSwimming"),
+      numberRunning:sessionStorage.setItem("numberRunning"),
+      numberPullUp:sessionStorage.setItem("numberPullUp"),
+      numberJumpRope:sessionStorage.setItem("numberJumpRope"),
     };
     const data = await getInfoGymMode(userGymData); // Gọi API và lấy dữ liệu
 
