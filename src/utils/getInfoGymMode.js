@@ -1,6 +1,6 @@
 async function getInfoGymMode(userGymData) {
   try {
-    const response = await fetch("http://103.77.246.226:5001/app/gym-mode", {
+    const response = await fetch("http://localhost:5000/app/gym-mode", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -22,7 +22,7 @@ async function getInfoGymMode(userGymData) {
 
 async function getInfoNutrition(userGymData) {
   try {
-    const response = await fetch("http://103.77.246.226:5001/app/nutrition", {
+    const response = await fetch("http://localhost:5000/app/nutrition", {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -43,7 +43,7 @@ async function getInfoNutrition(userGymData) {
 }
 async function getInfoExercise(userGymData) {
   try {
-    const response = await fetch("http://103.77.246.226:5001/app/exercise", {
+    const response = await fetch("http://localhost:5000/app/exercise", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
