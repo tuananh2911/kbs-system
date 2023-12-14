@@ -61,6 +61,8 @@ function GymMode() {
     },
     // ...
   ];
+  const handleMealPlanChange = () => {};
+  const handleWorkoutPlanChange = () => {};
   const fetchData = async () => {
     // Gọi API để lấy dữ liệu
     const userGymData = {
@@ -74,10 +76,10 @@ function GymMode() {
       timeToGym: sessionStorage.getItem("timeToGym"),
       goalSelect: sessionStorage.getItem("goal"),
       workoutDuration: sessionStorage.getItem("workoutDuration"),
-      numberSwimming:sessionStorage.setItem("numberSwimming"),
-      numberRunning:sessionStorage.setItem("numberRunning"),
-      numberPullUp:sessionStorage.setItem("numberPullUp"),
-      numberJumpRope:sessionStorage.setItem("numberJumpRope"),
+      numberSwimming: sessionStorage.setItem("numberSwimming"),
+      numberRunning: sessionStorage.setItem("numberRunning"),
+      numberPullUp: sessionStorage.setItem("numberPullUp"),
+      numberJumpRope: sessionStorage.setItem("numberJumpRope"),
     };
     const data = await getInfoGymMode(userGymData); // Gọi API và lấy dữ liệu
 
@@ -104,7 +106,48 @@ function GymMode() {
     // Gọi hàm gọi API
     fetchData();
   }, []);
+  const [selectedMuscleGroups, setSelectedMuscleGroups] = useState([]);
+  const muscleGroups = ["Ngực", "Lưng", "Chân", "Bắp tay", "Vai"];
+  const handleMuscleGroupSelect = (muscleGroup) => {
+    if (selectedMuscleGroups.includes(muscleGroup)) {
+      // Nếu lựa chọn đã được chọn trước đó, hủy chọn nó
+      setSelectedMuscleGroups(
+        selectedMuscleGroups.filter((group) => group !== muscleGroup)
+      );
+    } else {
+      // Nếu lựa chọn chưa được chọn, thêm nó vào danh sách
+      setSelectedMuscleGroups([...selectedMuscleGroups, muscleGroup]);
+    }
+  };
+  const [isEditingMuscleGroups, setIsEditingMuscleGroups] = useState(false);
+  const handleEditMuscleGroups = () => {
+    setIsEditingMuscleGroups(!isEditingMuscleGroups);
+  };
+  const handleMealOrderChange = (newOrder) => {
+    setMealOrder(newOrder);
+  };
+  const [mealOrder, setMealOrder] = useState(["Carb", "Protein", "Vegetable"]);
+  const [isEditingMeals, setIsEditingMeals] = useState(false);
 
+  const handleEditMeals = () => {
+    setIsEditingMeals(!isEditingMeals);
+  };
+
+  const onDragEnd = (result) => {
+    if (!result.destination) return;
+    const items = Array.from(mealOrder);
+    const [reorderedItem] = items.splice(result.source.index, 1);
+    items.splice(result.destination.index, 0, reorderedItem);
+    setMealOrder(items);
+  };
+
+  const handleSubmit = () => {
+    // Gửi dữ liệu thứ tự mới của mealOrder lên server
+    console.log("Thứ tự mới: ", mealOrder);
+    // Đặt lại trạng thái isEditingMeals
+    setIsEditingMeals(false);
+  };
+  
   return (
     <div className="container mx-auto p-4 ">
       <h1 className="text-2xl font-bold text-center mb-6">
@@ -141,20 +184,58 @@ function GymMode() {
             </ul>
           </div>
         ))}
+        <button
+          onClick={handleMealPlanChange}
+          className="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        >
+          Thay Đổi thực đơn
+        </button>
       </div>
       <div className="bg-slate-800 shadow-md rounded-lg p-6 mb-6">
-      <h2 className="text-xl font-semibold mb-4">Chế Độ Tập Luyện Của Bạn</h2>
-      {workoutPlan.map((dayPlan, index) => (
-        <div key={index} className="mb-4">
-          <h3 className="font-semibold text-lg mb-2">{dayPlan.day}</h3>
-          <ul className="list-disc pl-5">
-            {dayPlan.exercises.map((exercise, exerciseIndex) => (
-              <li key={exerciseIndex}>{exercise}</li>
+        <h2 className="text-xl font-semibold mb-4">Chế Độ Tập Luyện Của Bạn</h2>
+        {workoutPlan.map((dayPlan, index) => (
+          <div key={index} className="mb-4">
+            <h3 className="font-semibold text-lg mb-2">{dayPlan.day}</h3>
+            <ul className="list-disc pl-5">
+              {dayPlan.exercises.map((exercise, exerciseIndex) => (
+                <li key={exerciseIndex}>{exercise}</li>
+              ))}
+            </ul>
+          </div>
+        ))}
+        {isEditingMuscleGroups ? (
+          <div>
+            <h3 className="font-semibold text-lg mb-2">Chọn nhóm cơ</h3>
+            {muscleGroups.map((muscleGroup, index) => (
+              <div key={index} className="mb-2">
+                <input
+                  type="checkbox"
+                  id={`muscle-group-${index}`}
+                  value={muscleGroup}
+                  onChange={() => handleMuscleGroupSelect(muscleGroup)}
+                  checked={selectedMuscleGroups.includes(muscleGroup)}
+                />
+                <label htmlFor={`muscle-group-${index}`}>{muscleGroup}</label>
+              </div>
             ))}
-          </ul>
-        </div>
-      ))}
-    </div>
+          </div>
+        ) : (
+          <button
+            onClick={handleEditMuscleGroups}
+            className="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          >
+            Thay đổi bài tập
+          </button>
+        )}
+        {isEditingMuscleGroups && (
+          <button
+            onClick={handleWorkoutPlanChange}
+            className="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          >
+            Submit
+          </button>
+        )}
+      </div>
     </div>
   );
 }

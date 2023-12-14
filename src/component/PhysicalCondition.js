@@ -37,7 +37,7 @@ const PhysicalCondition = () => {
 
   return (
     <div className="flex flex-col items-center justify-center h-screen  p-4">
-      <h2 className="text-3xl font-bold mb-8 ">Nhập Số Lượng Hoạt Động Thể Chất Của Bạn</h2>
+      <h2 className="text-3xl font-bold mb-8 ">Nhập Số Lượng Hoạt Động Thể Chất Của Bạn (Hoạt động liên tục không nghỉ)</h2>
 
       <ActivityInput
         label="Hít Đất"
@@ -54,7 +54,7 @@ const PhysicalCondition = () => {
         setSelected={setIsSwimmingSelected}
         value={swimmingCount}
         setValue={setSwimmingCount}
-        placeholder="Số vòng"
+        placeholder="Số mét"
       />
 
       <ActivityInput

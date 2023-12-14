@@ -31,7 +31,7 @@ function LevelFitnessSelection() {
   return (
     <div className="flex flex-col items-center justify-center h-screen">
       <h2 className="text-3xl font-bold mb-8">
-        Mức độ tập thể hình của bạn là gì (số ngày trong tuần)?
+        Bạn tập gym bao nhiêu ngày 1 tuần?
       </h2>
       <div className="grid grid-cols-4 gap-4 mb-8">
         {levelsFitness.map((levelFitness) => (
@@ -56,7 +56,7 @@ function LevelFitnessSelection() {
           <input
             type="number"
             className="border-2 bg-slate-900 border-gray-300 p-2 rounded-md"
-            placeholder="Nhập thời gian tập luyện (phút)"
+            placeholder="Nhập thời gian tập luyện (giờ)"
             value={workoutDuration}
             onChange={(e) => setWorkoutDuration(e.target.value)}
             disabled={isDurationDisabled}
