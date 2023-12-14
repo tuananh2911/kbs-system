@@ -76,9 +76,9 @@ const getListStyle = isDraggingOver => ({
 
 function GymMode() {
   const location = useLocation();
-  const [caloToMaintain, setCaloToMaintain] = useState(0);
-  const [caloToReachGoal, setCaloToReachGoal] = useState(0);
-  const [timeToReachGoal, setTimeToReachGoal] = useState(0);
+  const [caloToMaintain, setCaloToMaintain] = useState(1255);
+  const [caloToReachGoal, setCaloToReachGoal] = useState(1100);
+  const [timeToReachGoal, setTimeToReachGoal] = useState(21);
   const [mealBreakfast, setMealBreakfast] = useState(0);
   const [mealLunch, setMealLunch] = useState(0);
   const [mealDinner, setMealDinner] = useState(0);
@@ -139,7 +139,7 @@ function GymMode() {
   }, []);
   const [selectedMuscleGroups, setSelectedMuscleGroups] = useState([]);
   const [isOpenModal, setIsOpenModal] = useState(false);
-  const muscleGroups = ["Ngực", "Lưng", "Chân", "Bắp tay", "Vai"];
+  const muscleGroups = ["Ngực (Chest)", "Lưng (Back group)", "Cổ và vai (Neck & Shoulders 3 Group)", "Bắp tay (Biceps group)", "Cẳng tay (Foream Group)","Chân (Leags Group)","Bụng và lưng dưới (Abdomen & Lower Back Group)"];
   const handleMuscleGroupSelect = (muscleGroup) => {
     if (selectedMuscleGroups.includes(muscleGroup)) {
       // Nếu lựa chọn đã được chọn trước đó, hủy chọn nó
@@ -237,7 +237,7 @@ function GymMode() {
         </p>
         <p>
           Thời gian dự kiến để đạt mục tiêu:{" "}
-          <span className="font-semibold">{timeToReachGoal}</span>
+          <span className="font-semibold">{timeToReachGoal} ngày</span>
         </p>
       </div>
 
@@ -259,7 +259,7 @@ function GymMode() {
           onClick={handleMealPlanChange}
           className="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
         >
-          Thay Đổi thực đơn
+          Thay đổi thực đơn
         </button>
       </div>
       <Dialog open = {isOpenModal} onClose={() => setIsOpenModal(false)}>
