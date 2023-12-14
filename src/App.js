@@ -19,9 +19,9 @@ import NumberExercise from './component/NumberExercise'
 function App() {
   return (
     <Router>
-      <div className="grid-pattern h-screen overflow-y-auto hide-scrollbar"><ProgressBar />
-      <img src={logo} alt="Logo" className=" top-0 left-0 m-4 w-40" />
-       {/* Include the ProgressBar component */}
+      <div className="grid-pattern h-screen overflow-y-auto hide-scrollbar">
+      <img src={logo} alt="Logo" className="absolute top-0 left-0 m-4 w-40" />
+      <ProgressBar /> {/* Include the ProgressBar component */}
         <Routes>
           <Route path="" element={<AgeSelection />} />
           <Route path="/height" element={<Height />} />
