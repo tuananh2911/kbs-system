@@ -15,8 +15,9 @@ function NumberExercise() {
   return (
     <div className="flex flex-col items-center justify-center h-screen">
       <h2 className="text-3xl font-bold mb-8">
-        Bạn tập gym bao nhiêu ngày 1 tuần?
+        Bạn muốn tập gym bao nhiêu buổi 1 tuần?
       </h2>
+      <h2 className="text-2xl font-bold mb-4">(Dưới đây là gợi ý của chuyên gia)</h2>
       <div className="grid grid-cols-4 gap-4 mb-8">
         {levelsFitness.map((NumberExercise) => (
           <button

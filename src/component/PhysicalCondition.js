@@ -37,7 +37,9 @@ const PhysicalCondition = () => {
 
   return (
     <div className="flex flex-col items-center justify-center h-screen  p-4">
-      <h2 className="text-3xl font-bold mb-8 ">Nhập Số Lượng Hoạt Động Thể Chất Của Bạn (Hoạt động liên tục không nghỉ)</h2>
+      <h2 className="text-3xl font-bold mb-2 ">Hãy tự đánh giá khả năng hoạt động thể chất hiện tại của bạn đối với mỗi bài tập sau: </h2>
+      <h2 className="text-3xl font-bold mb-16">( Hoạt động liên tục không nghỉ)</h2>
+      <h2 className="mb-4">Lưu ý: Nếu không chắc chắn thì có thể bỏ qua. Hãy cung cấp thông tin chính xác nhất có thể để hệ thống của chúng tôi tư vấn một cách chính xác hơn.</h2>
 
       <ActivityInput
         label="Hít Đất"
