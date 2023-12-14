@@ -6,7 +6,7 @@ function Height() {
   const [height, setHeight] = useState(""); // Thêm state cho chiều cao
 
   const handleHeightChange = (event) => {
-    sessionStorage.setItem("height", event.target.value);
+    sessionStorage.setItem("height", parseInt(event.target.value));
     setHeight(event.target.value);
   };
 

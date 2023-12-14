@@ -6,7 +6,7 @@ function NumberExercise() {
   const navigate = useNavigate();
 
   const handleFitnessLevelChange = (level) => {
-    sessionStorage.setItem("numberExercise", level);
+    sessionStorage.setItem("numberExercise", parseInt(level));
     navigate("/summary");
   };
 

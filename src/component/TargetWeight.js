@@ -6,7 +6,7 @@ function TargetWeight() {
   const [TargetWeight, setTargetWeight] = useState(null);
 
   const handleTargetWeightChange = (event) => {
-    sessionStorage.setItem("goalWeight", event.target.value);
+    sessionStorage.setItem("goalWeight", parseInt(event.target.value));
     setTargetWeight(event.target.value);
   };
   const handleOKClick = () => {

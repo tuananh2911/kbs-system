@@ -11,7 +11,7 @@ function LevelFitnessSelection() {
   const handleLevelFitnessSelect = () => {
     const duration = selectedLevelFitness === 0 ? 0 : workoutDuration;
     sessionStorage.setItem("frequentlyGym", parseInt(selectedLevelFitness));
-    sessionStorage.setItem("workoutDuration", duration);
+    sessionStorage.setItem("workoutDuration", parseFloat(duration));
     navigate("/physical-condition");
   };
 

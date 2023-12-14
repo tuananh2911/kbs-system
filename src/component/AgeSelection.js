@@ -15,7 +15,7 @@ function AgeSelection() {
     const isValidAge =
       /^[1-9][0-9]*$/.test(enteredAge) && enteredAge >= 12 && enteredAge <= 100;
     if (isValidAge) {
-      sessionStorage.setItem("age", enteredAge);
+      sessionStorage.setItem("age", parseInt(enteredAge));
       navigate("/gender");
     } else {
       setError("Độ tuổi không hợp lệ. Vui lòng nhập lại.");

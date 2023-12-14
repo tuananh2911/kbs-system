@@ -26,11 +26,11 @@ const PhysicalCondition = () => {
     const finalPullUpCount = isPullUpSelected ? pullUpCount : 0;
     const finalJumpRopeCount = isJumpRopeSelected ? jumpRopeCount : 0;
 
-    sessionStorage.setItem("numberPushUp", finalPushUpCount);
-    sessionStorage.setItem("numberSwimming", finalSwimmingCount);
-    sessionStorage.setItem("numberRunning", finalRunningCount);
-    sessionStorage.setItem("numberPullUp", finalPullUpCount);
-    sessionStorage.setItem("numberJumpRope", finalJumpRopeCount);
+    sessionStorage.setItem("numberPushUp", parseInt(finalPushUpCount));
+    sessionStorage.setItem("numberSwimming", parseInt(finalSwimmingCount));
+    sessionStorage.setItem("numberRunning", parseInt(finalRunningCount));
+    sessionStorage.setItem("numberPullUp", parseInt(finalPullUpCount));
+    sessionStorage.setItem("numberJumpRope", parseInt(finalJumpRopeCount));
 
     navigate("/workout-time", { state: { finalPushUpCount, finalSwimmingCount, finalRunningCount, finalPullUpCount, finalJumpRopeCount } });
   };
