@@ -17,6 +17,7 @@ const ProgressBar = () => {
     "/physical-condition",
     "/workout-time",
     "/goal",
+    "/number-exercise",
     "/summary",
   ];
 

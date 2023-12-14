@@ -13,14 +13,15 @@ import GoalSelect from './component/Goal';
 import GymMode from './component/GymMode';
 import logo from './assets/logo.png';
 import ProgressBar from './component/ProgressBar';
+import NumberExercise from './component/NumberExercise'
 // Import các trang khác ở đây
 
 function App() {
   return (
     <Router>
-      <div className="grid-pattern h-screen overflow-y-auto hide-scrollbar">
-      <img src={logo} alt="Logo" className="absolute top-0 left-0 m-4 w-40" />
-      <ProgressBar /> {/* Include the ProgressBar component */}
+      <div className="grid-pattern h-screen overflow-y-auto hide-scrollbar"><ProgressBar />
+      <img src={logo} alt="Logo" className=" top-0 left-0 m-4 w-40" />
+       {/* Include the ProgressBar component */}
         <Routes>
           <Route path="" element={<AgeSelection />} />
           <Route path="/height" element={<Height />} />
@@ -32,6 +33,7 @@ function App() {
           <Route path='/level-fitness-selection' element={<LevelFitnessSelection />} />
           <Route path='/physical-condition' element={<PhysicalCondition />} />
           <Route path='/workout-time' element={<WorkoutTime />} />
+          <Route path='/number-exercise' element={<NumberExercise />} />
           <Route path='/summary' element={<GymMode />} />
           {/* Định nghĩa các Route khác ở đây */}
         </Routes>

@@ -7,7 +7,7 @@ function GoalSelect() {
   const handleGoalSelect = async (goal) => {
     setSelectedWeightGoal(goal);
     sessionStorage.setItem("goal", goal);
-    navigate("/summary");
+    navigate("/number-exercise");
   };
 
   const weightGoals = ["Tăng cân", "Giữ cân", "Giảm cân"];
